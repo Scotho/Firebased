@@ -1,7 +1,6 @@
 Firebased
 ==============
-*Start your AngularFire one page app off with a bang. Firebased is a unique AngularFire SPA template to help kick start your development.*
-To get started, simply change "appname" at the top of app.js to your firebase data URL and run index.html. Currently, all logic is contained in the controllers found in app.js
+*To get started, simply change "appname" at the top of app.js to your firebase data URL and run index.html. Currently, all logic is contained in the controllers found in app.js*
 
 
 What's it do?
