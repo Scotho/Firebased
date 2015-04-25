@@ -1,6 +1,6 @@
 
 (function () {
-	var appName = 'balo'; //Your firebase app name
+	var appName = ''; //Your firebase app name
 	var app = angular.module("app", ['firebase', 'ipCookie', 'ui.router']);
 	app.config(function config($stateProvider) {
 		$stateProvider.state("index", {
