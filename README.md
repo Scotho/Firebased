@@ -8,6 +8,7 @@ What's it do?
 ---------------------
 *Firebased was designed to be a starting point for any AngularFire single page application. Here are a few feature highlights...*
 - Account Handling (includes cookie session storage)
+- Three Way Data Binding on user-specific arrays (Confused? Open 2 demo pages simultaneously and modify some text)
 - Implements a wide range of Angular, Firebase, and MVC concepts out of the box.
 
 Depends on Bootstrap, jQuery, firebase, angularfire, and angular-cookie.
