@@ -1,4 +1,3 @@
-
 (function () {
 	var appName = ''; //Your firebase app name
 	var app = angular.module("app", ['firebase', 'ipCookie', 'ui.router']);
@@ -13,8 +12,6 @@
 		{
 			$scope.appName = appName;
 			$scope.currentID = ipCookie('checkAuth');
-			//Check to see if current account is undefined or guest
-			//------------------------------//
 			//Get UserData, set $scope.userName
 			var accountRef = new Firebase('https://' + appName + '.firebaseio.com/accounts/createdAccounts/' + $scope.currentID + '/accountDetails/');
 			var syncAccount = $firebase(accountRef);
@@ -30,12 +27,10 @@
 			}
 		} //get cookie, set currentID and $scope.userName
 
-		//------------------------------//
 		var setMessage = function (message, messageStyle) {
 			$scope.message = message ? message : null;
 			$scope.messageStyle = messageStyle ? messageStyle : 'success';
 		};
-		//------------------------------//
 		var checkAccount = function (email, pass) {
 			setMessage();
 			var ref = new Firebase('https://' + appName + '.firebaseio.com/');
@@ -55,9 +50,6 @@
 				}
 			});
 		};
-		//------------------------------//
-
-		//------------------------------//
 		$scope.createAccount = function (userName, email, pass) {
 			var ref = new Firebase('https://' + appName + '.firebaseio.com/');
 			ref.createUser({
@@ -76,7 +68,7 @@
 							$scope.currentID = authData.uid;
 							setNewUser(userName, email);
 							saveCookie();
-							alert('Account Created Successfully! Welcome to '+appName+', ' + userName + '.');
+							alert('Account Created Successfully! Welcome to ' + appName + ', ' + userName + '.');
 
 							setTimeout(function () {
 								location.reload();
@@ -98,7 +90,6 @@
 			newAccountDetails.email = email;
 			newAccountDetails.$save();
 		};
-		//------------------------------//
 		var saveCookie = function () {
 			setMessage();
 			$scope.messageStyle = 'success';
@@ -109,7 +100,6 @@
 				expirationUnit: 'hours'
 			});
 		};
-		//------------------------------//
 		$scope.deleteCookie = function () {
 			setMessage();
 			ipCookie.remove('checkAuth');
@@ -122,13 +112,22 @@
 				setMessage('Unable to log out', 'danger');
 			}
 		};
-		//------------------------------//
 		$scope.logIn = function (email, pass) {
 			checkAccount(email, pass);
 		};
 	}]);
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//MAIN CONTROLLER---------------------------------------
 	app.controller("MainCtrl", function ($scope, $firebase, ipCookie) {
 		$scope.currentID = ipCookie('checkAuth');
@@ -146,66 +145,65 @@
 		$scope.bullets = syncBullets.$asArray();
 
 
-   //4.0: BULLET BEHAVIOUR
-   //---------------------------------------------------
-	$scope.NextLine = function(indx) {
-	 angular.element(document.querySelector('#f_' + indx))[0].focus();
-	}; //called by ngDown
-	$scope.BackLine = function(indx) {
-	  angular.element(document.querySelector('#f_' + indx))[0].focus();
-	}; //called by Up
+		//BULLET BEHAVIOUR 
+		//---------------------------------------------------
+		$scope.NextLine = function (indx) {
+			angular.element(document.querySelector('#f_' + indx))[0].focus();
+		}; //called by ngDown
+		$scope.BackLine = function (indx) {
+			angular.element(document.querySelector('#f_' + indx))[0].focus();
+		}; //called by Up
 
-	$scope.AddBulletManually = function(indx) {
-	 $scope.bullets.$add({
-		'primaryKey': '',
-		'text': '',
-		'address': indx,
-		'childPointer': null,
-		'parentPointer': null,
-		'contentCheck': false,
-		'content': ''
-	 });
-	}; 
-	$scope.AddInLine = function(bulobj, indx) {
-	 $scope.bullets.$add({
-		'primaryKey': '',
-		'text': '',
-		'address': bulobj.address + 1,
-		'hasChild': false,
-		'tabIndex': 0,
-		'parentPointer': null,
-		'contentCheck': false,
-		'content': '',
-	 });
+		$scope.AddBulletManually = function (indx) {
+			$scope.bullets.$add({
+				'primaryKey': '',
+				'text': '',
+				'address': indx,
+				'childPointer': null,
+				'parentPointer': null,
+				'contentCheck': false,
+				'content': ''
+			});
+		};
+		$scope.AddInLine = function (bulobj, indx) {
+			$scope.bullets.$add({
+				'primaryKey': '',
+				'text': '',
+				'address': bulobj.address + 1,
+				'hasChild': false,
+				'tabIndex': 0,
+				'parentPointer': null,
+				'contentCheck': false,
+				'content': '',
+			});
 
-	 for (i = 0; i < $scope.bullets.length; i++) {
-		if ($scope.bullets[i].address > bulobj.address) {
-		   $scope.bullets[i].address++;
-		   $scope.bullets.$save($scope.bullets[i]);
+			for (i = 0; i < $scope.bullets.length; i++) {
+				if ($scope.bullets[i].address > bulobj.address) {
+					$scope.bullets[i].address++;
+					$scope.bullets.$save($scope.bullets[i]);
+				}
+
+			}
+
+			setTimeout(function () {
+				angular.element(document.querySelector('#f_' + (indx + 2)))[0].focus();
+			}, 50);
 		}
+		$scope.DeleteCheck = function (bulobj, msg, indx, address) {
+			if (bulobj.text === '' && $scope.bullets.length > 1) {
+				$scope.bullets.$remove(bulobj);
+				setTimeout(function () {
+					angular.element(document.querySelector('#f_' + (indx)))[0].focus();
+				}, 15);
 
-	 }
-
-	 setTimeout(function() {
-		angular.element(document.querySelector('#f_' + (indx + 2)))[0].focus();
-	 }, 50);
-	} 
-	$scope.DeleteCheck = function(bulobj, msg, indx, address) {
-	 if (bulobj.text === '' && $scope.bullets.length > 1) {
-		$scope.bullets.$remove(bulobj);
-			  setTimeout(function() {
-		   angular.element(document.querySelector('#f_' + (indx)))[0].focus();
-				 }, 15);
-
-		for (i = 0; i <= $scope.bullets.length -1; i++) {
-		   if ($scope.bullets[i].address > address) {
-			  $scope.bullets[i].address--;
-			  $scope.bullets.$save($scope.bullets[i]);
-		   }
-		}
-	 }
-	}; //called by ngDelete
-	//---------------------------------------------------
+				for (i = 0; i <= $scope.bullets.length - 1; i++) {
+					if ($scope.bullets[i].address > address) {
+						$scope.bullets[i].address--;
+						$scope.bullets.$save($scope.bullets[i]);
+					}
+				}
+			}
+		}; //called by ngDelete
 
 	});
 
@@ -223,20 +221,20 @@
 			});
 		};
 	});
-app.directive('ngEnter', function() {
-   return function(scope, element, attrs) {
-      element.bind("keydown keypress", function(event) {
-         if (event.which === 13) {
-            scope.$apply(function() {
-               scope.$eval(attrs.ngEnter);
-            });
-event.stopPropagation();
+	app.directive('ngEnter', function () {
+		return function (scope, element, attrs) {
+			element.bind("keydown keypress", function (event) {
+				if (event.which === 13) {
+					scope.$apply(function () {
+						scope.$eval(attrs.ngEnter);
+					});
+					event.stopPropagation();
 
-            event.preventDefault();
-         }
-      });
-   };
-});
+					event.preventDefault();
+				}
+			});
+		};
+	});
 	//directive for keypress down
 	app.directive('ngDown', function () {
 		return function (scope, element, attrs) {
