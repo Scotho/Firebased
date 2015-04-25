@@ -1,0 +1,87 @@
+
+<div 
+	style="width:100%;"
+	ng-controller="MainCtrl"
+	id="main">
+	
+<!--BULLETS ROW-FLUID-->
+<div 
+	class="row-fluid" 
+	style='width:98%; 
+	margin-right:2%;
+	margin-left:1%;'>
+
+<!--BEGIN NG-REPEAT-->
+<div 
+	ID ="bullets" 
+	ng-repeat="bullet in bullets | orderBy:'address'">	
+<!--BULLETPOINT-->
+<div 
+	class="bullet" 
+	ng-init="check=false" 
+	ng-mouseover="check = true" 
+	ng-mouseleave="check = false">
+</div> <!-- /BULLET CIRCLE MENU BUTTON -->
+
+<!--MENU SPACER-->
+<div class ="menuspacer"
+	ng-mouseover="check = true" 
+	ng-mouseleave="check = false" 
+	ng-show="check">
+</div>
+<!--/MENU SPACER-->
+	
+<!--BULLETMENU-->
+
+<div 
+	class="bulletmenu" 
+	ng-show="check"
+	ng-mouseover="check = true" 
+	ng-mouseleave="check = false">
+	<div style ="width:100px;height:120px; text-align:center">
+		<div style ="margin-top:2px; margin-bottom:2px;">
+		index: {{$index}}
+		<hr style ="margin-top:2px; margin-bottom:2px;">
+		address: {{this.bullet.address}}
+		<hr style ="margin-top:2px; margin-bottom:2px;">
+		hasChild: {{this.bullet.hasChild}}
+		<hr style ="margin-top:2px; margin-bottom:2px;">
+		Tab Index: {{this.bullet.tabIndex}}
+		<hr style ="margin-top:2px; margin-bottom:2px;">
+		Parent Address: {{this.bullet.parentPointer.address}}
+		<hr style ="margin-top:2px; margin-bottom:0px;">
+		</div>
+	</div>
+</div><!-- /BULLET MENU ON HOVER -->
+
+				
+<!--INPUT FIELD-->		
+<input
+	class='bulletinput'
+	id="f_{{$index+1}}" 
+	type='text' 
+	ng-change="bullets.$save(bullet);" 
+	ng-model="bullet.text" 
+	data-ng-trim="false" 
+	ng-delete="DeleteCheck(this.bullet, this.bullet.text, {{$index}},this.bullet.address)" 
+	ng-down="NextLine({{$index + 2}})" 
+	ng-enter="AddInLine(this.bullet,{{$index}})" 
+	ng-up="BackLine({{$index}})" 
+	ng-keyup="isEmpty(bullet.text,bullet)" 
+/><!-- /INPUT FIELD -->
+	
+				
+</div> <!-- /NG-REPEAT -->
+
+<!--ADD BULLET AT END-->
+<i
+   class="fa fa-plus" 
+   style="font-size:12px;margin-right:5px;" 
+   ng-click="AddBulletManually(bullets.length)">
+</i> <!-- ADD BULLET AT END -->
+         
+</div> <!-- /BULLETS ROW FLUID -->
+
+
+<!-- End Bullet Group -->
+</div>

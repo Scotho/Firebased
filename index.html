@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+
+	<meta name="description" content="Angular Fire App Start - Big Ass List Online">
+	<meta name="author" content="Craig Smith - craigryansmith.com">
+
+	<!--CSS-->
+	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.css" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css" />
+
+	<!--Javascript-->
+	<script src="js/jquery.min.js"></script>
+	<script src="bootstrap/bootstrap.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-ui-router.min.js"></script>
+	<script src="https://cdn.firebase.com/js/client/2.1.0/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/0.9.1/angularfire.min.js"></script>
+
+	<script src="js/angular-cookie.min.js"></script>
+	<!-- Personal Scripts -->
+
+	<script src="js/app.js"></script>
+
+	</head>
+<!--MAIN CONTROLLER/BODY-->
+	
+	<body>
+	<!--NAVBAR-->
+	<div ng-include="'partials/navbar.html'"></div>
+
+	<!--BODY-->
+	<div ng-include="'partials/main.html'"></div>
+
+	</body>
+
+</html>

@@ -1,0 +1,35 @@
+							  <div class="modal fade" style ="margin-top:40px;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" style ="margin-top:25px;">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" style="text-align:center" id="myModalLabel">Create a New Account</h4>
+				  </div>
+				  <div class="modal-body">
+
+					  <div class="container-fluid">
+					<p style ="text-align:center;">Thank you for your interest in App Name. Please enter a unique username and email followed by a password.</p>
+						  <form ng-submit="createAccount(newUserName,newUserEmail,newUserPassword">
+					  <div class="input-group margin-bottom-sm">
+						 <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+						 <input class="form-control" type="text" ng-model="newUserName">
+					  </div>
+					  <div class="input-group margin-bottom-sm">
+						 <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+						 <input class="form-control" type="text" ng-model="newUserEmail">
+					  </div>
+					  <div class="input-group">
+						 <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+						 <input class="form-control" type="password" ng-model="newUserPassword">
+					  </div>
+							  </form><br>
+
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" ng-click="createAccount(newUserName,newUserEmail,newUserPassword)">Create Account</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</div>
