@@ -1,6 +1,6 @@
 Firebased
 ==============
-*To get started, simply change "appname" at the top of app.js to your firebase data URL and run index.html. Currently, all logic is contained in the controllers found in app.js*
+*To get started, simply change "appName" at the top of app.js to your firebase data URL and run index.html. Currently, all logic is contained in the controllers found in app.js*
 
 
 What's it do?
