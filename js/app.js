@@ -12,6 +12,8 @@
 		{
 			$scope.appName = appName;
 			$scope.currentID = ipCookie('checkAuth');
+			//Check to see if current account is undefined or guest
+			//------------------------------//
 			//Get UserData, set $scope.userName
 			var accountRef = new Firebase('https://' + appName + '.firebaseio.com/accounts/createdAccounts/' + $scope.currentID + '/accountDetails/');
 			var syncAccount = $firebase(accountRef);
@@ -27,10 +29,12 @@
 			}
 		} //get cookie, set currentID and $scope.userName
 
+		//------------------------------//
 		var setMessage = function (message, messageStyle) {
 			$scope.message = message ? message : null;
 			$scope.messageStyle = messageStyle ? messageStyle : 'success';
 		};
+		//------------------------------//
 		var checkAccount = function (email, pass) {
 			setMessage();
 			var ref = new Firebase('https://' + appName + '.firebaseio.com/');
@@ -50,6 +54,9 @@
 				}
 			});
 		};
+		//------------------------------//
+
+		//------------------------------//
 		$scope.createAccount = function (userName, email, pass) {
 			var ref = new Firebase('https://' + appName + '.firebaseio.com/');
 			ref.createUser({
@@ -68,7 +75,7 @@
 							$scope.currentID = authData.uid;
 							setNewUser(userName, email);
 							saveCookie();
-							alert('Account Created Successfully! Welcome to ' + appName + ', ' + userName + '.');
+							alert('Account Created Successfully! Welcome to appName, ' + userName + '.');
 
 							setTimeout(function () {
 								location.reload();
@@ -90,6 +97,7 @@
 			newAccountDetails.email = email;
 			newAccountDetails.$save();
 		};
+		//------------------------------//
 		var saveCookie = function () {
 			setMessage();
 			$scope.messageStyle = 'success';
@@ -100,6 +108,7 @@
 				expirationUnit: 'hours'
 			});
 		};
+		//------------------------------//
 		$scope.deleteCookie = function () {
 			setMessage();
 			ipCookie.remove('checkAuth');
@@ -112,22 +121,13 @@
 				setMessage('Unable to log out', 'danger');
 			}
 		};
+		//------------------------------//
 		$scope.logIn = function (email, pass) {
 			checkAccount(email, pass);
 		};
 	}]);
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//MAIN CONTROLLER---------------------------------------
 	app.controller("MainCtrl", function ($scope, $firebase, ipCookie) {
 		$scope.currentID = ipCookie('checkAuth');
@@ -145,7 +145,7 @@
 		$scope.bullets = syncBullets.$asArray();
 
 
-		//BULLET BEHAVIOUR 
+		//4.0: BULLET BEHAVIOUR
 		//---------------------------------------------------
 		$scope.NextLine = function (indx) {
 			angular.element(document.querySelector('#f_' + indx))[0].focus();
@@ -204,6 +204,7 @@
 				}
 			}
 		}; //called by ngDelete
+		//---------------------------------------------------
 
 	});
 

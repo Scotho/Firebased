@@ -39,8 +39,17 @@
 	ng-mouseover="check = true" 
 	ng-mouseleave="check = false">
 	<div style ="width:100px;height:120px; text-align:center">
+		<div style ="margin-top:2px; margin-bottom:2px;">
+		index: {{$index}}
 		<hr style ="margin-top:2px; margin-bottom:2px;">
 		address: {{this.bullet.address}}
+		<hr style ="margin-top:2px; margin-bottom:2px;">
+		hasChild: {{this.bullet.hasChild}}
+		<hr style ="margin-top:2px; margin-bottom:2px;">
+		Tab Index: {{this.bullet.tabIndex}}
+		<hr style ="margin-top:2px; margin-bottom:2px;">
+		Parent Address: {{this.bullet.parentPointer.address}}
+		<hr style ="margin-top:2px; margin-bottom:0px;">
 		</div>
 	</div>
 </div><!-- /BULLET MENU ON HOVER -->
